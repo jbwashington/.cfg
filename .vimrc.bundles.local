@@ -1,0 +1,7 @@
+Bundle 'xuhdev/SingleCompile'
+Bundle 'mattn/emmet-vim'
+Bundle 'bling/vim-airline'
+Bundle 'honza/vim-snippets'
+Bundle 'SirVer/ultisnips'
+Bundle 'edkolev/promptline.vim'
+Bundle 'mattn/webapi-vim'

@@ -1,0 +1,87 @@
+" not to break on words
+set formatoptions=1
+set linebreak
+
+" fixing up moving line by line in the paragraph
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" easier window/buffer navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" search tags with CTrlP
+nnoremap <leader>. :CtrlPTag<cr>
+
+
+" Trigger configuration. Do not use <tab> if you use YouCompleteMe
+let g:ycm_key_list_previous_completion                                      = ['<Up>']
+let g:UltiSnipsExpandTrigger                                                = "<c-e>"
+let g:UltiSnipsListSnippets                                                 = "<c-l>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit                                                    = "vertical"
+
+" don't highlight current line
+set nocursorline
+
+" fix color display problem
+syntax on
+
+set autowrite
+set nocursorline
+set nowritebackup
+
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
+" keyboard shortcuts
+inoremap jj <ESC>
+
+" emmet settings
+"let g:user_emmet_mode                                                      = 'n'    "only enable normal mode functions.
+let g:user_emmet_mode                                                       = 'inv'  "enable all functions, which is equal to
+let g:user_emmet_mode                                                       = 'a'    "enable all function in all mode.
+
+" highlight search
+" set hlsearch
+" nmap <leader>hl :let @/                                                     = ""<CR>
+
+" start and stop obsession.vim
+nnoremap <leader>o :Obsess<CR>
+nnoremap <leader>O :Obsess<CR>
+
+" singlecompile: compile c++ files from command line
+nnoremap <leader>m :SCCompile<cr>
+nnoremap <leader>M :SCCompileRun<cr>
+
+" see debug for singlecompile
+nnoremap <F10> :cope<cr>
+
+" " gui settings
+" if (&t_Co == 256 || has('gui_running'))
+"     if ($TERM_PROGRAM == 'iTerm.app')
+"         colorscheme solarized
+"     else
+"         colorscheme desert
+"     endif
+" endif
+
+" Disambiguate ,a & ,t from the Align plugin, making them fast again.
+"
+" This section is here to prevent AlignMaps from adding a bunch of mappings
+" that interfere with the very-common ,a and ,t mappings. This will get run
+" at every startup to remove the AlignMaps for the *next* vim startup.
+"
+" If you do want the AlignMaps mappings, remove this section, remove
+" ~/.vim/bundle/Align, and re-run rake in maximum-awesome.
+function! s:RemoveConflictingAlignMaps()
+    if exists("g:loaded_AlignMapsPlugin")
+        AlignMapsClean
+    endif
+endfunction
+command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
+silent! autocmd VimEnter * RemoveConflictingAlignMaps
